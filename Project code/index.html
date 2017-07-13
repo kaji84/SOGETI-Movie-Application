@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieApp">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/config.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Sogeti_Movie_Application</title>
+<link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css">
+
+
+  <style type="text/css">
+<!--
+.style1 {font-family: "Courier New", Courier, monospace}
+-->
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+<div class="container">
+<div class="navbar-header">
+<a class="navbar-brand" href="index.html" >Home</a>
+<a class="navbar-brand" href="index.html">Search</a>
+<a class="navbar-brand" href="featured.html" target="_blank">Featured</a>
+</div></div>
+</nav>
+
+
+<div class="container" ng-controller="MovieSearchController as model">
+<div class="jumbotron">
+
+<img src="https://www.sogeti.com/Static/img/logo.png" alt="Sogeri" width="219" height="54">
+<marquee behavior="alternate" scrollamount="10">
+<h3>::SOGETI MOVIE SEARCH ENGINE APPLICATION::</h3></marquee>
+<input name="text" type="text" placeholder="Please enter movie name...." class="form-control"  ng-model="title" >
+<div align="right">Plot:
+
+  <select name="plot" style="width: 100px;" class="btn btn-danger dropdown-toggle">
+    <option value="short" selected="Short">Short</option>
+    <option value="full" >Full</option>
+  </select>
+  <input  type="button"  class="btn btn-primary" value="Search Movies!" ng-click="model.searchMovie(title,plot)">
+                              
+  </div>
+</div>
+<table width="0" border="0" class="table table-bordered">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+	<th>imdbID</th>
+	<th>Poster</th>
+	<th>More Details</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="movie in model.movies" scope="row">
+    <td >{{movie.Title}}</td>
+    <td>{{movie.Year}}</td>
+	<th>{{movie.imdbID}}</th>
+	<td><img ng-src="{{movie.Poster}}" height="121" width="132" /></td>
+		
+	<th><a href="moviesdetails.html?imdbID={{movie.imdbID}}" ng-click="model.searchMovie(title)" target="_blank">More Details</a></th>
+  </tr>
+</tbody>
+</table>
+
+<div class="container">
+<div id="movies" class="row">
+
+
+</div>
+</div>
+<div ng-view></div>
+</body>
+</html>
